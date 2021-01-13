@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="logFilePath">/path/to/log/jdSpider</Property>
+    </Properties>
+    <Appenders>
+        <RollingFile name="FILE" fileName="${logFilePath}/jdSpider.log" filePattern="${logFilePath}/jdSpider-%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date %5level [%thread] (%file:%line) - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+        <Console name="STDOUT">
+            <PatternLayout pattern="%date%highlight{%5level} %style{%c{1.}}{Cyan} (%file:%line) [%thread] : %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="FILE"/>
+        </Root>
+        <Logger name="com.ftvalue.aggregate" level="INFO" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="FILE"/>
+        </Logger>
+    </Loggers>
+</Configuration>
